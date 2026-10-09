@@ -1,0 +1,32 @@
+
+
+from PIL import Image
+import gradio as gr
+
+def analyze_image(image):
+    if image is None:
+        return "Please upload an image first."
+
+    width, height = image.size
+
+    return f"""
+    🔍 TRUTHLENS AI — IMAGE ANALYSIS
+
+    Image size: {width} × {height}
+
+    Status: Image received successfully
+    AI Analysis: Not performed yet
+
+    ⚠️ This is a prototype.
+    No deepfake detection model is connected yet.
+    """
+
+demo = gr.Interface(
+    fn=analyze_image,
+    inputs=gr.Image(type="pil", label="Upload an image"),
+    outputs=gr.Textbox(label="Analysis Report"),
+    title="🔎 TruthLens AI",
+    description="AI-powered Deepfake & Misinformation Detection"
+)
+
+demo.launch()
